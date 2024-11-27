@@ -21,6 +21,11 @@ def rimuovi(indice):
         lista_spesa.pop(indice)
     return redirect(url_for('home'))
 
+@app.route('/svuota', methods=['POST'])
+def svuota():
+    lista_spesa.clear()
+    return redirect(url_for('home'))
+
 #avvio dell'app Flask
 if __name__ == '__main__':
     app.run(debug=True)
