@@ -35,4 +35,20 @@
             <button type="submit">Svuota lista</button>
         </form>
     </div>
+    <br>
+    {% if lista %}
+<ul>
+{% for elemento in lista %}
+<li>
+{{ elemento.elemento }} #COMMENTA ???
+<form action="/rimuovi/{{ elemento.id }}" method="post"
+
+style="display:inline;">
+
+<button type="submit">Rimuovi</button>
+</form>
+</li>
+{% endfor %}
+
+{% endif %}
 </body>
