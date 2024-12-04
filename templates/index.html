@@ -7,48 +7,29 @@
     <title>Lista della Spesa</title>
     </head> 
 <body>
+    <h1>Lista spesa</h1>
+    <form action="/aggiungi" method="post">
+        <input type="text" name="elemento" placeholder="Aggiungi un elemento" required>
+        <button type="submit">Aggiungi</button>
+    </form>
+    <br>
     <div id = "cosa">
-        <h1>Lista spesa</h1>
         {% if lista_spesa %}
-            <ul>
+        <ul>
             {% for elemento in lista_spesa %}
             <li>
-            {{ elemento }}
-
-        <form action="/rimuovi/{{ loop.index0 }}" method="post" style="display:inline;">
-            <button type="submit">Rimuovi</button>
-        </form>
-
+                {{ elemento.elemento }}
+                <form action="/rimuovi/{{ elemento.id }}" method="post" style="display:inline;">
+                <button type="submit">Rimuovi</button></form>
             </li>
             {% endfor %}
-                </ul>
-            {% else %}
+        {% else %}
             <p>La lista è vuota.</p>
-            {% endif %}
-
-        <form action="/aggiungi" method="post">
-            <input type="text" name="elemento" placeholder="Aggiungi un elemento" required>
-            <button type="submit">Aggiungi</button>
-        </form>
-        <br>
+        {% endif %}
+        </ul>
         <form action="/svuota" method="post" style="display:inline;">
             <button type="submit">Svuota lista</button>
         </form>
     </div>
     <br>
-    {% if lista %}
-<ul>
-{% for elemento in lista %}
-<li>
-{{ elemento.elemento }} #COMMENTA ???
-<form action="/rimuovi/{{ elemento.id }}" method="post"
-
-style="display:inline;">
-
-<button type="submit">Rimuovi</button>
-</form>
-</li>
-{% endfor %}
-
-{% endif %}
 </body>

@@ -19,28 +19,29 @@ with app.app_context():
 #rotta principale
 @app.route('/')
 def home():
+    lista_spesa = ListaSpesa.query.all()
     return render_template('index.html', lista_spesa = lista_spesa)
 
 @app.route('/aggiungi', methods=['POST'])
 def aggiungi():
     elemento = request.form['elemento']
     if elemento:
-        nuovo_elemento = ListaSpesa(elemento=elemento) #COMMENTA
-        db.session.add(nuovo_elemento) #COMMENTA
-        db.session.commit() #COMMENTA
+        nuovo_elemento = ListaSpesa(elemento=elemento)
+        db.session.add(nuovo_elemento)
+        db.session.commit()
     return redirect(url_for('home'))
 
 @app.route('/rimuovi/<int:indice>', methods=['POST'])
 def rimuovi(indice):
-    elemento = ListaSpesa.query.get_or_404(indice) #COMMENTA
-    db.session.delete(elemento) #COMMENTA
-    db.session.commit() #COMMENTA
+    elemento = ListaSpesa.query.get_or_404(indice)
+    db.session.delete(elemento)
+    db.session.commit()
     return redirect(url_for('home'))
 
 @app.route('/svuota', methods=['POST'])
 def svuota():
-    ListaSpesa.query.delete() #COMMENTA ???
-    db.session.commit() #COMMENTA ???
+    ListaSpesa.query.delete()
+    db.session.commit()
     return redirect(url_for('home'))
 
 #avvio dell'app Flask
