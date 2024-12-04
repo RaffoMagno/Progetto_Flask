@@ -1,8 +1,16 @@
-h1 {
-    color: red;
-    text-align: center;
+#form-aggiungere {
+    max-width: 50%;
+    margin: auto;
+    padding: 10px;
+    border: 3px grey solid;
+    border-radius: 15px;
+}
+
+#zona-elementi {
+    max-width: 50%;
+    margin: auto;
 }
 
 li {
- color: green;
+    padding-bottom: 10px;
 }
